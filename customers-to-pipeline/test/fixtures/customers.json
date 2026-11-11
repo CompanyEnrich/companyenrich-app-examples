@@ -1,0 +1,255 @@
+[
+  {
+    "id": "id-alpha",
+    "name": "Alpha",
+    "domain": "alpha.example",
+    "website": "https://alpha.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2012,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "201-500",
+    "revenue": "10m-50m"
+  },
+  {
+    "id": "id-bravo",
+    "name": "Bravo",
+    "domain": "bravo.example",
+    "website": "https://bravo.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2014,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "201-500",
+    "revenue": "10m-50m"
+  },
+  {
+    "id": "id-charlie",
+    "name": "Charlie",
+    "domain": "charlie.example",
+    "website": "https://charlie.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2015,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "201-500",
+    "revenue": "50m-100m"
+  },
+  {
+    "id": "id-delta",
+    "name": "Delta",
+    "domain": "delta.example",
+    "website": "https://delta.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2016,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "201-500",
+    "revenue": "50m-100m"
+  },
+  {
+    "id": "id-echo",
+    "name": "Echo",
+    "domain": "echo.example",
+    "website": "https://echo.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2018,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "1K-5K"
+  },
+  {
+    "id": "id-foxtrot",
+    "name": "Foxtrot",
+    "domain": "foxtrot.example",
+    "website": "https://foxtrot.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2019,
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "1K-5K"
+  },
+  {
+    "id": "id-golf",
+    "name": "Golf",
+    "domain": "golf.example",
+    "website": "https://golf.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2021,
+    "industry": "Software",
+    "industries": [
+      "Software",
+      "Media & Internet/Data Collection & Internet Portals"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "1K-5K"
+  },
+  {
+    "id": "id-hotel",
+    "name": "Hotel",
+    "domain": "hotel.example",
+    "website": "https://hotel.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2022,
+    "industry": "Software",
+    "industries": [
+      "Software",
+      "Media & Internet/Data Collection & Internet Portals"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "GB",
+        "name": "United Kingdom"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "51-200"
+  },
+  {
+    "id": "id-india",
+    "name": "India",
+    "domain": "india.example",
+    "website": "https://india.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2023,
+    "industry": "Business Services/Custom Software & IT Services",
+    "industries": [
+      "Business Services/Custom Software & IT Services"
+    ],
+    "categories": [
+      "b2b"
+    ],
+    "location": {
+      "country": {
+        "code": "GB",
+        "name": "United Kingdom"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z",
+    "employees": "51-200"
+  },
+  {
+    "id": "id-juliet",
+    "name": "Juliet",
+    "domain": "juliet.example",
+    "website": "https://juliet.example",
+    "logoUrl": "https://example.com/logo.png",
+    "type": "private",
+    "foundedYear": 2005,
+    "industry": "Business Services/Custom Software & IT Services",
+    "industries": [
+      "Business Services/Custom Software & IT Services"
+    ],
+    "categories": [
+      "b2b"
+    ],
+    "location": {
+      "country": {
+        "code": "DE",
+        "name": "Germany"
+      }
+    },
+    "updatedAt": "2026-11-01T00:00:00Z"
+  }
+]

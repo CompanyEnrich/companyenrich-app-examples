@@ -1,0 +1,5 @@
+{
+  "neverOverwrite": ["Company name", "Company Domain Name", "Industry"],
+  "fillOnlyIfEmpty": ["Number of Employees", "Annual Revenue", "Country/Region", "City", "Year Founded", "Description"],
+  "trustApi": ["Website URL", "LinkedIn Company Page"]
+}

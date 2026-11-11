@@ -1,0 +1,26 @@
+{
+  "name": "crm-enrichment-diff",
+  "version": "1.0.0",
+  "private": true,
+  "description": "See exactly what company enrichment would change in your CRM before anything is written: a cell-level diff, overwrite rules, an HTML review page and an optional HubSpot write-back.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.6",
+    "jsdom": "^31.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

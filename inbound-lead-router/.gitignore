@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+output/
+# Enrichment cache and round-robin assignments written at runtime
+state/
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+# Written by `next dev` on every start
+AGENTS.md

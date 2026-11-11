@@ -1,0 +1,150 @@
+{
+ "note": "Free CompanyEnrich counts for examples/icp.json, captured 2026-11-11",
+ "icp": {
+  "categories": [
+   "b2b",
+   "saas"
+  ],
+  "employees": [
+   "51-200",
+   "201-500"
+  ]
+ },
+ "country": {
+  "code": "DE",
+  "name": "Germany",
+  "latitude": 51,
+  "longitude": 9
+ },
+ "countryTotal": 1213,
+ "states": [
+  {
+   "id": 1376,
+   "code": "BW",
+   "name": "Baden-Württemberg",
+   "latitude": 48.661602,
+   "longitude": 9.350134,
+   "companies": 121
+  },
+  {
+   "id": 1377,
+   "code": "BY",
+   "name": "Bavaria",
+   "latitude": 48.790447,
+   "longitude": 11.4978895,
+   "companies": 161
+  },
+  {
+   "id": 1378,
+   "code": "BE",
+   "name": "Berlin",
+   "latitude": 52.520008,
+   "longitude": 13.404954,
+   "companies": 163
+  },
+  {
+   "id": 1379,
+   "code": "BB",
+   "name": "Brandenburg",
+   "latitude": 52.41253,
+   "longitude": 12.531645,
+   "companies": 8
+  },
+  {
+   "id": 1380,
+   "code": "HB",
+   "name": "Bremen",
+   "latitude": 53.079296,
+   "longitude": 8.801694,
+   "companies": 9
+  },
+  {
+   "id": 1381,
+   "code": "HH",
+   "name": "Hamburg",
+   "latitude": 53.551086,
+   "longitude": 9.993682,
+   "companies": 50
+  },
+  {
+   "id": 1382,
+   "code": "HE",
+   "name": "Hesse",
+   "latitude": 50.65205,
+   "longitude": 9.162437,
+   "companies": 75
+  },
+  {
+   "id": 1383,
+   "code": "NI",
+   "name": "Lower Saxony",
+   "latitude": 52.636703,
+   "longitude": 9.845077,
+   "companies": 46
+  },
+  {
+   "id": 1384,
+   "code": "MV",
+   "name": "Mecklenburg-Vorpommern",
+   "latitude": 53.61265,
+   "longitude": 12.429595,
+   "companies": 10
+  },
+  {
+   "id": 1385,
+   "code": "NW",
+   "name": "North Rhine-Westphalia",
+   "latitude": 51.433235,
+   "longitude": 7.661594,
+   "companies": 166
+  },
+  {
+   "id": 1386,
+   "code": "RP",
+   "name": "Rhineland-Palatinate",
+   "latitude": 50.118347,
+   "longitude": 7.308953,
+   "companies": 26
+  },
+  {
+   "id": 1387,
+   "code": "SL",
+   "name": "Saarland",
+   "latitude": 49.396423,
+   "longitude": 7.0229607,
+   "companies": 8
+  },
+  {
+   "id": 1388,
+   "code": "SN",
+   "name": "Saxony",
+   "latitude": 51.10454,
+   "longitude": 13.201738,
+   "companies": 23
+  },
+  {
+   "id": 1389,
+   "code": "ST",
+   "name": "Saxony-Anhalt",
+   "latitude": 51.950264,
+   "longitude": 11.692273,
+   "companies": 7
+  },
+  {
+   "id": 1390,
+   "code": "SH",
+   "name": "Schleswig-Holstein",
+   "latitude": 54.219368,
+   "longitude": 9.696116,
+   "companies": 22
+  },
+  {
+   "id": 1391,
+   "code": "TH",
+   "name": "Thuringia",
+   "latitude": 51.01099,
+   "longitude": 10.845346,
+   "companies": 13
+  }
+ ]
+}

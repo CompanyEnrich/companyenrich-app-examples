@@ -1,0 +1,76 @@
+# Runs the GTM signal monitor every Monday and on demand.
+#
+# GitHub only runs workflows from the root of a repository, so copy this file to
+# .github/workflows/gtm-signal-monitor.yml in your own PRIVATE repository. See the README,
+# "Run it on a schedule", for the secrets to add and why state is committed back.
+#
+# Assumes the app sits at the repository root. If it lives in a folder such as
+# gtm-signal-monitor/, change `working-directory`, `cache-dependency-path` and the
+# artifact `path` below to point into that folder.
+
+name: GTM signal monitor
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Mondays at 07:00 UTC
+  workflow_dispatch:
+    inputs:
+      args:
+        description: "Extra CLI flags, for example --dry-run or --watcher target-account-changes"
+        required: false
+        default: ""
+
+permissions:
+  contents: write # lets the job commit state/state.json back to the repository
+
+# Two runs at once would race on the state file.
+concurrency:
+  group: gtm-signal-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - name: Run the monitor
+        run: npm start -- $EXTRA_ARGS
+        env:
+          COMPANYENRICH_API_KEY: ${{ secrets.COMPANYENRICH_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          EXTRA_ARGS: ${{ inputs.args }}
+
+      # Runs even if a watcher failed: watchers that finished have already paid for their
+      # results, and their state must be kept so the next run does not report them again.
+      - name: Commit state
+        if: always()
+        run: |
+          [ -f state/state.json ] || exit 0
+          git add -f state/state.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update GTM signal monitor state"
+          git push
+
+      - name: Keep the digest
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gtm-digest-${{ github.run_id }}
+          path: output/
+          if-no-files-found: ignore
+          retention-days: 30

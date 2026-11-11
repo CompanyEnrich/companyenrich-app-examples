@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+.next/
+*.tsbuildinfo
+
+# Secrets: only .env.example files are committed
+.env
+.env.*
+!.env.example
+
+# Written by `next dev`
+AGENTS.md
+!/AGENTS.md
+
+# Local data produced by the apps (may contain people's data)
+output/
+runs/
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
+*.log

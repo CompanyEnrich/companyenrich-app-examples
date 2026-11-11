@@ -1,0 +1,7 @@
+Record ID,Company name,Company Domain Name,Website URL,Industry,Number of Employees,Annual Revenue,Country/Region,City,Year Founded,LinkedIn Company Page,Description
+101,Twilio,twilio.com,,Telecommunications,120,,USA,SF,2008,http://linkedin.com/company/twilio,
+102,"Atlassian, Inc.",https://www.atlassian.com/,,Computer Software,,2000000000,AU,Sydney,,,"Makes Jira and Confluence, ""team"" software."
+103,Zoom,zoom.us,,,,,United States,,2011,,
+104,Unknown Co,unknown-company.example,,,,,,,,,
+105,No Domain Ltd,,,,,,,,,,
+106,Twilio (dupe),www.twilio.com,,,,,,,,,

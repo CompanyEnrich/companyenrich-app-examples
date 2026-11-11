@@ -1,0 +1,42 @@
+{
+  "name": "company-autocomplete",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A drop-in company picker: domain autocomplete with logos, then one enrichment call to pre-fill industry, size and country.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "next dev -p 3105",
+    "build": "next build",
+    "start": "next start -p 3105",
+    "build:wc": "esbuild src/web-component/company-autocomplete.ts --bundle --format=esm --target=es2022 --outfile=dist/company-autocomplete.js",
+    "example:express": "npm run build:wc && tsx examples/express-server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit --incremental false"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.9",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.28.2",
+    "express": "^5.3.0",
+    "jsdom": "^31.0.0",
+    "tailwindcss": "^4.3.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

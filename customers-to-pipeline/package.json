@@ -1,0 +1,24 @@
+{
+  "name": "customers-to-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Turn a CSV of current customers into an ICP filter, a market size, lookalike accounts and contacts with the CompanyEnrich API.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

@@ -1,0 +1,15 @@
+name,domain
+Vercel,https://vercel.com/
+Netlify,www.netlify.com
+Postman,postman.com
+Sentry,https://sentry.io/welcome/
+LaunchDarkly,launchdarkly.com
+CircleCI,CircleCI.com
+Snyk,snyk.io
+Grafana Labs,https://grafana.com
+Retool,retool.com
+Sourcegraph,sourcegraph.com
+Temporal,temporal.io
+Supabase,supabase.com
+Vercel (duplicate row),vercel.com
+Internal test account,n/a

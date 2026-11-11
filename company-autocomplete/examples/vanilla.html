@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Company autocomplete · web component</title>
+    <script type="module" src="/company-autocomplete.js"></script>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        color: #0f172a;
+        background: #f8fafc;
+      }
+      main {
+        max-width: 28rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+      }
+      form {
+        display: grid;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+      }
+      label,
+      .ca-label {
+        display: block;
+        margin-bottom: 0.375rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      input,
+      .ca-input {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font: inherit;
+        font-size: 0.875rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.5rem;
+      }
+      button {
+        padding: 0.625rem;
+        font: inherit;
+        font-weight: 600;
+        color: #fff;
+        background: #4f46e5;
+        border: 0;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      pre {
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.75rem;
+        color: #f1f5f9;
+        background: #0f172a;
+        border-radius: 0.5rem;
+      }
+
+      /* <company-autocomplete> renders these classes into the light DOM and toggles `hidden`. */
+      [hidden] {
+        display: none !important;
+      }
+      company-autocomplete {
+        display: block;
+        position: relative;
+      }
+      .ca-field {
+        position: relative;
+      }
+      .ca-spinner {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        width: 0.875rem;
+        height: 0.875rem;
+        margin-top: -0.4375rem;
+        border: 2px solid #e2e8f0;
+        border-top-color: #4f46e5;
+        border-radius: 50%;
+        animation: ca-spin 0.8s linear infinite;
+      }
+      @keyframes ca-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .ca-popup {
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        margin-top: 0.25rem;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 20px rgb(15 23 42 / 0.1);
+      }
+      .ca-listbox {
+        max-height: 20rem;
+        margin: 0;
+        padding: 0.25rem 0;
+        overflow-y: auto;
+        list-style: none;
+      }
+      .ca-option {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+      }
+      .ca-option--active {
+        background: #eef2ff;
+      }
+      .ca-logo,
+      .ca-initials {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.375rem;
+        object-fit: contain;
+      }
+      .ca-initials {
+        display: grid;
+        place-items: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #475569;
+        background: #f1f5f9;
+      }
+      .ca-option-text {
+        min-width: 0;
+      }
+      .ca-option-name,
+      .ca-option-domain {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .ca-option-name {
+        font-weight: 500;
+      }
+      .ca-option-domain {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+      .ca-message,
+      .ca-hint {
+        margin: 0;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+      .ca-hint {
+        padding: 0.375rem 0 0;
+      }
+      .ca-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Company autocomplete, no framework</h1>
+      <p>The same picker as the React demo, as a custom element. Suggestions are free; a pick costs 1 credit.</p>
+
+      <form id="signup">
+        <div>
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" />
+        </div>
+        <company-autocomplete endpoint="/api/company" name="companyDomain"></company-autocomplete>
+        <div>
+          <label for="industry">Industry</label>
+          <input id="industry" name="industry" />
+        </div>
+        <div>
+          <label for="employees">Company size</label>
+          <input id="employees" name="employees" />
+        </div>
+        <div>
+          <label for="country">Country</label>
+          <input id="country" name="country" />
+        </div>
+        <button type="submit">Create account</button>
+      </form>
+      <pre id="output" hidden></pre>
+    </main>
+
+    <script type="module">
+      const form = document.getElementById('signup');
+      const picker = form.querySelector('company-autocomplete');
+      const output = document.getElementById('output');
+      const fields = ['industry', 'employees', 'country'].map((id) => document.getElementById(id));
+
+      picker.addEventListener('company-select', (event) => {
+        const { company } = event.detail;
+        if (!company) return;
+        const [industry, employees, country] = fields;
+        industry.value = company.industry ?? '';
+        employees.value = company.employees ?? '';
+        country.value = company.country?.name ?? '';
+      });
+      picker.addEventListener('company-clear', () => fields.forEach((field) => (field.value = '')));
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        output.hidden = false;
+        output.textContent = JSON.stringify(Object.fromEntries(new FormData(form)), null, 2);
+      });
+    </script>
+  </body>
+</html>

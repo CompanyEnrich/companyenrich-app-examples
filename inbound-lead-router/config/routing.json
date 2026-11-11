@@ -1,0 +1,77 @@
+{
+  "description": "Ordered rules: the first rule whose conditions all match decides the team. Conditions in one rule are ANDed; values in one list are ORed.",
+  "alertTiers": ["A", "B", "C"],
+  "people": {
+    "pageSize": 3,
+    "persona": {
+      "seniority": ["c-suite", "vp", "head", "director"],
+      "department": ["sales", "marketing"]
+    }
+  },
+  "teams": {
+    "enterprise-na": {
+      "label": "Enterprise, North America",
+      "roundRobin": true,
+      "members": [{ "name": "Jordan" }, { "name": "Riley" }]
+    },
+    "us-west": {
+      "label": "Mid-market, US West",
+      "roundRobin": true,
+      "members": [{ "name": "Casey" }, { "name": "Morgan" }]
+    },
+    "us-east": {
+      "label": "Mid-market, US East and Central",
+      "roundRobin": true,
+      "members": [{ "name": "Taylor" }, { "name": "Avery" }]
+    },
+    "emea": {
+      "label": "EMEA",
+      "roundRobin": false,
+      "members": [{ "name": "Sam" }]
+    },
+    "inside-sales": {
+      "label": "Inside sales",
+      "roundRobin": true,
+      "members": [{ "name": "Quinn" }, { "name": "Drew" }]
+    },
+    "nurture": {
+      "label": "Marketing nurture",
+      "roundRobin": false,
+      "members": [{ "name": "Marketing ops" }]
+    }
+  },
+  "rules": [
+    {
+      "name": "Tier A enterprise in North America",
+      "when": { "tier": ["A"], "country": ["US", "CA"], "employees": { "min": "501-1K" } },
+      "team": "enterprise-na",
+      "persona": {
+        "seniority": ["c-suite", "vp", "head"],
+        "department": ["sales", "marketing", "c-suite"]
+      }
+    },
+    {
+      "name": "Mid-market US West",
+      "when": { "tier": ["A", "B"], "country": ["US"], "state": ["CA", "WA", "OR", "NV", "AZ", "UT", "CO"] },
+      "team": "us-west"
+    },
+    {
+      "name": "Mid-market US East and Central",
+      "when": { "tier": ["A", "B"], "country": ["US"] },
+      "team": "us-east"
+    },
+    {
+      "name": "EMEA",
+      "when": { "tier": ["A", "B"], "country": ["GB", "IE", "DE", "FR", "NL", "SE", "DK", "ES", "IT"] },
+      "team": "emea"
+    },
+    {
+      "name": "Other qualified leads",
+      "when": { "tier": ["A", "B", "C"] },
+      "team": "inside-sales"
+    }
+  ],
+  "fallback": {
+    "team": "nurture"
+  }
+}

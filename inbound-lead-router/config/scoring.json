@@ -1,0 +1,117 @@
+{
+  "description": "Example ICP for a B2B SaaS product sold to revenue teams. Each dimension earns weight x match points, where match is between 0 and 1. The default weights add up to 100.",
+  "tiers": {
+    "A": 70,
+    "B": 50,
+    "C": 30
+  },
+  "dimensions": {
+    "employees": {
+      "label": "Company size",
+      "weight": 25,
+      "match": {
+        "1-10": 0,
+        "11-50": 0.3,
+        "51-200": 0.7,
+        "201-500": 1,
+        "501-1K": 1,
+        "1K-5K": 0.8,
+        "5K-10K": 0.5,
+        "over-10K": 0.3
+      },
+      "other": 0,
+      "unknown": 0
+    },
+    "revenue": {
+      "label": "Annual revenue",
+      "weight": 15,
+      "match": {
+        "under-1m": 0,
+        "1m-10m": 0.4,
+        "10m-50m": 1,
+        "50m-100m": 1,
+        "100m-200m": 0.8,
+        "200m-1b": 0.6,
+        "over-1b": 0.4
+      },
+      "other": 0,
+      "unknown": 0.2
+    },
+    "categories": {
+      "label": "Business model",
+      "weight": 15,
+      "match": {
+        "saas": 1,
+        "b2b": 0.8,
+        "service-provider": 0.3,
+        "mobile": 0.3,
+        "media": 0.1,
+        "e-commerce": 0.1,
+        "b2c": 0,
+        "b2g": 0,
+        "local-business": 0
+      },
+      "other": 0,
+      "unknown": 0
+    },
+    "country": {
+      "label": "Headquarters",
+      "weight": 10,
+      "match": {
+        "US": 1,
+        "CA": 1,
+        "GB": 0.9,
+        "IE": 0.9,
+        "DE": 0.8,
+        "NL": 0.8,
+        "SE": 0.8,
+        "FR": 0.7,
+        "AU": 0.7
+      },
+      "other": 0.2,
+      "unknown": 0
+    },
+    "foundedYear": {
+      "label": "Company age",
+      "weight": 5,
+      "bands": [
+        { "min": 2010, "match": 1 },
+        { "min": 2000, "max": 2009, "match": 0.6 }
+      ],
+      "other": 0.2,
+      "unknown": 0
+    },
+    "funding": {
+      "label": "Funding stage and recency",
+      "weight": 15,
+      "stages": {
+        "seed": 0.4,
+        "angel": 0.3,
+        "series_a": 0.7,
+        "series_b": 1,
+        "series_c": 1,
+        "series_d": 0.9,
+        "series_e": 0.8,
+        "series_f": 0.7
+      },
+      "otherStage": 0.3,
+      "recentMonths": 24,
+      "staleMultiplier": 0.5,
+      "unknown": 0
+    },
+    "technologies": {
+      "label": "Tech stack",
+      "weight": 15,
+      "match": {
+        "Salesforce": 0.5,
+        "HubSpot": 0.5,
+        "Marketo": 0.3,
+        "Segment": 0.3,
+        "Outreach": 0.3,
+        "Gong": 0.3,
+        "Intercom": 0.2
+      },
+      "unknown": 0
+    }
+  }
+}

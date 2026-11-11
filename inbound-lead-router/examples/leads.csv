@@ -1,0 +1,7 @@
+email,name,source
+demo@vercel.com,Demo Lead,website-signup
+demo@gmail.com,Demo Lead,website-signup
+demo@linear.app,Demo Lead,pricing-page
+demo@walmart.com,Demo Lead,webinar
+demo@posthog.com,Demo Lead,demo-request
+not-an-email,Demo Lead,import

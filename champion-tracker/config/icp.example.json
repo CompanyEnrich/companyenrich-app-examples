@@ -1,0 +1,12 @@
+{
+  "icp": {
+    "employees": { "weight": 35, "match": ["201-500", "501-1K", "1K-5K"] },
+    "revenue": { "weight": 25, "match": ["50m-100m", "100m-200m", "200m-1b"] },
+    "categories": { "weight": 20, "match": ["saas", "b2b"] },
+    "country": { "weight": 20, "match": ["US", "CA", "GB", "IE", "DE", "NL"] }
+  },
+  "buyerPersona": {
+    "seniority": ["c-suite", "vp", "head", "director"],
+    "department": ["sales", "c-suite/sales-executive"]
+  }
+}

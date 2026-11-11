@@ -1,0 +1,25 @@
+{
+  "name": "territory-planner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Split a country into balanced sales territories from free CompanyEnrich company counts, with a map report and a routing-ready assignment file.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "parse5": "^8.1.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

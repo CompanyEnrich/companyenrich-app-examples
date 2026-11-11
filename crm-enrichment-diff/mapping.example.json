@@ -1,0 +1,35 @@
+{
+  "recordIdColumn": "Record ID",
+  "nameColumn": "Company name",
+  "domainColumns": ["Company Domain Name", "Website URL"],
+  "fields": [
+    { "column": "Company name", "path": "name", "normalizer": "companyName", "hubspotProperty": "name" },
+    { "column": "Company Domain Name", "path": "domain", "normalizer": "domain", "hubspotProperty": "domain" },
+    { "column": "Website URL", "path": "website", "normalizer": "url", "hubspotProperty": "website" },
+    { "column": "Industry", "path": "industry", "normalizer": "text", "hubspotProperty": "industry" },
+    {
+      "column": "Number of Employees",
+      "path": "employees",
+      "normalizer": "employees",
+      "hubspotProperty": "numberofemployees",
+      "writeAs": "lower-bound"
+    },
+    {
+      "column": "Annual Revenue",
+      "path": "revenue",
+      "normalizer": "revenue",
+      "hubspotProperty": "annualrevenue",
+      "writeAs": "lower-bound"
+    },
+    { "column": "Country/Region", "path": "location.country.name", "normalizer": "country", "hubspotProperty": "country" },
+    { "column": "City", "path": "location.city.name", "normalizer": "text", "hubspotProperty": "city" },
+    { "column": "Year Founded", "path": "foundedYear", "normalizer": "year", "hubspotProperty": "founded_year" },
+    {
+      "column": "LinkedIn Company Page",
+      "path": "socials.linkedinUrl",
+      "normalizer": "url",
+      "hubspotProperty": "linkedin_company_page"
+    },
+    { "column": "Description", "path": "description", "normalizer": "text", "hubspotProperty": "description" }
+  ]
+}

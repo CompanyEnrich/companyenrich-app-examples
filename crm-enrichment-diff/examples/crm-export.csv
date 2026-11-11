@@ -1,0 +1,17 @@
+Record ID,Company name,Company Domain Name,Website URL,Industry,Number of Employees,Annual Revenue,Country/Region,City,Year Founded,LinkedIn Company Page,Description
+18234500101,Shopify,shopify.com,https://www.shopify.com,Internet,10000,,Canada,Ottawa,2006,https://www.linkedin.com/company/shopify/,
+18234500102,Atlassian,https://www.atlassian.com/,,Computer Software,4000,2000000000,AU,Sydney,,linkedin.com/company/atlassian,"Team collaboration software, including Jira and Confluence."
+18234500103,HubSpot Inc.,hubspot.com,,Computer Software,7600,,United States of America,Cambridge,2006,,
+18234500104,Datadog,datadoghq.com,,,,,US,New York,,,
+18234500105,Twilio,twilio.com,,Telecommunications,120,,USA,SF,2008,http://linkedin.com/company/twilio,
+18234500106,Zoom,zoom.us,,Computer Software,,4500000000,United States,San Jose,2011,,Video conferencing.
+18234500107,Spotify,spotify.com,,Music,6500,,Sweden,Stockholm,2006,https://www.linkedin.com/company/spotify,
+18234500108,Siemens,siemens.com,,Industrial Automation,300000,,DE,Munich,1847,,
+18234500109,Adyen,adyen.com,,Financial Services,,,The Netherlands,Amsterdam,2006,,
+18234500110,Snowflake,snowflake.com,,Computer Software,2000,$1.2B,US,San Mateo,2012,,
+18234500111,Cloudflare,www.cloudflare.com,,Internet,,,,,2009,https://www.linkedin.com/company/cloudflare/,
+18234500112,Okta,okta.com,,Computer & Network Security,5000,,United States,San Francisco,2009,,
+18234500113,MongoDB,mongodb.com,,,n/a,,US,New York,2007,,
+18234500114,GitLab,,https://www.gitlab.com/company/,Computer Software,,,US,,2014,,
+18234500115,Shopify Inc.,www.shopify.com,,Internet,,,CA,,,,
+18234500116,Acme Holdings (old import),,,,,,,,,,

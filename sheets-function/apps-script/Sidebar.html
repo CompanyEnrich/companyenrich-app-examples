@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css" />
+    <style>
+      body { padding: 12px 12px 24px; }
+      section { border-top: 1px solid #dadce0; padding: 12px 0 4px; }
+      h2 { font-size: 13px; font-weight: 600; margin: 0 0 4px; }
+      p.secondary { margin: 0 0 8px; }
+      label.field { display: block; margin: 6px 0 2px; }
+      input[type='number'] { width: 64px; }
+      input[type='text'], select { width: 100%; box-sizing: border-box; }
+      .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; max-height: 168px; overflow-y: auto; margin-bottom: 8px; }
+      .choices label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .plan { background: #f1f3f4; border-radius: 4px; padding: 8px; margin-top: 8px; }
+      .plan p { margin: 0 0 8px; }
+      .status { margin-top: 6px; min-height: 16px; }
+      #balance { font-weight: 600; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span id="balance">Checking balance...</span>
+      <a href="#" id="refresh">Refresh</a>
+    </div>
+    <div class="secondary" id="budget"></div>
+    <p id="key-missing" class="error" hidden>No API key yet. Use CompanyEnrich &gt; Set API key, then click Refresh.</p>
+
+    <section>
+      <h2>Enrich selected column</h2>
+      <p class="secondary">
+        Select a column of domains, pick fields, and get one new column per field to the right.
+        1 credit per new domain; cached domains are free.
+      </p>
+      <div class="choices" id="enrich-fields"></div>
+      <button id="enrich-estimate">Estimate cost</button>
+      <div class="plan" id="enrich-plan" hidden>
+        <p id="enrich-summary"></p>
+        <button class="action" id="enrich-run"></button>
+        <button id="enrich-cancel">Cancel</button>
+      </div>
+      <div class="status" id="enrich-status"></div>
+    </section>
+
+    <section>
+      <h2>Find lookalikes for selected domain</h2>
+      <p class="secondary">Click one cell with a domain. 5 credits per lookalike, written to a new sheet.</p>
+      <label class="field">Lookalikes <input type="number" id="lookalike-results" min="1" value="5" /></label>
+      <label class="field" for="lookalike-country">Country (optional, code or name)</label>
+      <input type="text" id="lookalike-country" placeholder="US, Germany" />
+      <p><button id="lookalike-estimate">Estimate cost</button></p>
+      <div class="plan" id="lookalike-plan" hidden>
+        <p id="lookalike-summary"></p>
+        <button class="action" id="lookalike-run"></button>
+        <button id="lookalike-cancel">Cancel</button>
+      </div>
+      <div class="status" id="lookalike-status"></div>
+    </section>
+
+    <section>
+      <h2>Find people at selected domains</h2>
+      <p class="secondary">Select a column of domains. 2 credits per person, written to a new sheet.</p>
+      <div class="choices" id="people-seniorities"></div>
+      <label class="field" for="people-department">Department</label>
+      <select id="people-department"><option value="">Any department</option></select>
+      <label class="field" for="people-titles">Title contains (optional, comma-separated)</label>
+      <input type="text" id="people-titles" placeholder="sales, revenue operations" />
+      <label class="field">People per company <input type="number" id="people-per-company" min="1" value="2" /></label>
+      <p><button id="people-estimate">Estimate cost</button></p>
+      <div class="plan" id="people-plan" hidden>
+        <p id="people-summary"></p>
+        <button class="action" id="people-run"></button>
+        <button id="people-cancel">Cancel</button>
+      </div>
+      <div class="status" id="people-status"></div>
+    </section>
+
+    <script>
+      const DEFAULT_SENIORITIES = ['c-suite', 'vp', 'head', 'director'];
+      const plans = { enrich: null, lookalike: null, people: null };
+      // Bumped whenever an estimate starts or an input changes; an estimate
+      // that comes back with an older number is stale and ignored.
+      const generation = { enrich: 0, lookalike: 0, people: 0 };
+
+      const $ = (id) => document.getElementById(id);
+
+      /** Calls a server function in Sidebar.js and returns a Promise. */
+      function server(name, ...args) {
+        return new Promise((resolve, reject) => {
+          google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[name](...args);
+        });
+      }
+
+      function messageOf(error) {
+        return String((error && error.message) || error).replace(/^(Exception|Error):\s*/, '');
+      }
+
+      function setStatus(section, text, isError) {
+        const element = $(`${section}-status`);
+        element.textContent = text;
+        element.className = isError ? 'status error' : 'status gray';
+      }
+
+      function credits(value) {
+        return value.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      }
+
+      function checkbox(container, value, label, checked) {
+        const wrapper = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.value = value;
+        input.checked = checked;
+        wrapper.append(input, ` ${label}`);
+        wrapper.title = value;
+        container.append(wrapper);
+      }
+
+      function checkedValues(containerId) {
+        return [...$(containerId).querySelectorAll('input:checked')].map((input) => input.value);
+      }
+
+      function humanize(value) {
+        const text = value.replace(/-/g, ' ');
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
+
+      /** Shows an estimate with a confirm button that is disabled when the cost does not fit. */
+      function showPlan(section, plan, summary, cost, label) {
+        plans[section] = plan;
+        $(`${section}-summary`).textContent = summary;
+        const run = $(`${section}-run`);
+        if (cost > plan.balance) run.textContent = `Needs up to ${cost} credits; you have ${credits(plan.balance)}`;
+        else if (cost > plan.capLeft) run.textContent = `Needs up to ${cost} credits; ${plan.capLeft} left under today's cap`;
+        else run.textContent = label;
+        run.disabled = cost > plan.balance || cost > plan.capLeft;
+        $(`${section}-plan`).hidden = false;
+        setStatus(section, '');
+      }
+
+      function hidePlan(section) {
+        plans[section] = null;
+        $(`${section}-plan`).hidden = true;
+      }
+
+      /** Starts a new estimate and returns a check that is false once it is stale. */
+      function startEstimate(section) {
+        hidePlan(section);
+        const current = ++generation[section];
+        return () => generation[section] === current;
+      }
+
+      /** Runs a button's task with the button disabled and errors shown in the section. */
+      async function withButton(section, button, task) {
+        button.disabled = true;
+        try {
+          await task();
+        } catch (error) {
+          setStatus(section, messageOf(error), true);
+        } finally {
+          button.disabled = false;
+        }
+      }
+
+      // Enrich selected column
+
+      $('enrich-estimate').onclick = (event) =>
+        withButton('enrich', event.target, async () => {
+          const isCurrent = startEstimate('enrich');
+          setStatus('enrich', 'Checking the selection and the cache...');
+          const job = await server('estimateEnrichSelection', checkedValues('enrich-fields'));
+          if (!isCurrent()) return;
+          const parts = [`${job.rangeA1}: ${job.domains} unique domains, ${job.cached} already cached (free).`];
+          if (job.invalid) parts.push(`${job.invalid} invalid values will be skipped.`);
+          parts.push(`Up to ${job.maxCredits} credits; only companies that are found are billed.`);
+          const label = job.maxCredits ? `Enrich for up to ${job.maxCredits} credits` : 'Fill from cache (free)';
+          showPlan('enrich', job, parts.join(' '), job.maxCredits, label);
+        });
+
+      $('enrich-run').onclick = (event) =>
+        withButton('enrich', event.target, async () => {
+          let job = { ...plans.enrich, confirmed: true };
+          hidePlan('enrich');
+          while (!job.done) {
+            setStatus('enrich', `Enriching rows ${job.offset + 1}-${Math.min(job.offset + 50, job.rowCount)} of ${job.rowCount}...`);
+            job = await server('enrichSelectionChunk', job);
+          }
+          setStatus('enrich', `Done: ${job.rowCount} rows, ${job.billed} credits spent.`);
+          load();
+        });
+
+      $('enrich-cancel').onclick = () => hidePlan('enrich');
+
+      // Lookalikes
+
+      $('lookalike-estimate').onclick = (event) =>
+        withButton('lookalike', event.target, async () => {
+          const isCurrent = startEstimate('lookalike');
+          setStatus('lookalike', 'Counting lookalikes (free)...');
+          const plan = await server('estimateLookalikes', {
+            results: Number($('lookalike-results').value),
+            country: $('lookalike-country').value,
+          });
+          if (!isCurrent()) return;
+          if (!plan.results) {
+            setStatus('lookalike', `No lookalikes found for ${plan.domain}. Nothing to buy.`);
+            return;
+          }
+          const summary = `${plan.available.toLocaleString('en-US')} lookalikes of ${plan.domain} match. The top ${plan.results} cost up to ${plan.maxCredits} credits.`;
+          showPlan('lookalike', plan, summary, plan.maxCredits, `Find ${plan.results} for up to ${plan.maxCredits} credits`);
+        });
+
+      $('lookalike-run').onclick = (event) =>
+        withButton('lookalike', event.target, async () => {
+          const plan = { ...plans.lookalike, confirmed: true };
+          hidePlan('lookalike');
+          setStatus('lookalike', 'Searching...');
+          const result = await server('runLookalikes', plan);
+          setStatus('lookalike', `Wrote ${result.rows} companies to "${result.sheetName}" for ${result.credits} credits.`);
+          load();
+        });
+
+      $('lookalike-cancel').onclick = () => hidePlan('lookalike');
+
+      // People
+
+      $('people-estimate').onclick = (event) =>
+        withButton('people', event.target, async () => {
+          const isCurrent = startEstimate('people');
+          setStatus('people', 'Counting matching people (free)...');
+          const plan = await server('estimatePeople', {
+            seniorities: checkedValues('people-seniorities'),
+            department: $('people-department').value,
+            titles: $('people-titles').value,
+            perCompany: Number($('people-per-company').value),
+          });
+          if (!isCurrent()) return;
+          if (!plan.people) {
+            setStatus('people', 'Nobody matches at the selected companies. Nothing to buy.');
+            return;
+          }
+          const withMatches = plan.companies.filter((company) => company.take > 0).length;
+          const summary = `${plan.people} people across ${withMatches} of ${plan.companies.length} companies, up to ${plan.maxCredits} credits.`;
+          showPlan('people', plan, summary, plan.maxCredits, `Find ${plan.people} people for up to ${plan.maxCredits} credits`);
+        });
+
+      $('people-run').onclick = (event) =>
+        withButton('people', event.target, async () => {
+          const plan = { ...plans.people, confirmed: true };
+          hidePlan('people');
+          setStatus('people', 'Searching...');
+          const result = await server('runPeople', plan);
+          const written = result.rows ? `Wrote ${result.rows} people to "${result.sheetName}"` : 'No people written';
+          setStatus('people', `${written} for ${result.credits} credits.${result.error ? ` Stopped early: ${result.error}` : ''}`, Boolean(result.error));
+          load();
+        });
+
+      $('people-cancel').onclick = () => hidePlan('people');
+
+      // Changing any input makes an estimate stale: hide it and ignore any
+      // estimate still on its way, so Confirm can never submit an old plan.
+      for (const section of ['enrich', 'lookalike', 'people']) {
+        const container = $(`${section}-estimate`).closest('section');
+        container.addEventListener('input', () => {
+          generation[section]++;
+          hidePlan(section);
+          setStatus(section, '');
+        });
+      }
+
+      $('refresh').onclick = (event) => {
+        event.preventDefault();
+        load();
+      };
+
+      async function load() {
+        try {
+          const state = await server('getSidebarState');
+          $('key-missing').hidden = state.hasKey;
+          $('balance').textContent =
+            state.balance !== null ? `${credits(state.balance)} credits left` : state.balanceError || 'No balance yet';
+          $('budget').textContent = `Today: ${credits(state.budget.spent)} of ${state.budget.cap} credits (this spreadsheet's daily cap)`;
+
+          $('lookalike-results').max = state.limits.lookalikes;
+          $('people-per-company').max = state.limits.peoplePerCompany;
+          if (!$('enrich-fields').children.length) {
+            for (const field of state.fields) checkbox($('enrich-fields'), field.path, field.label, Boolean(field.pick));
+            for (const seniority of state.seniorities) {
+              checkbox($('people-seniorities'), seniority, humanize(seniority), DEFAULT_SENIORITIES.includes(seniority));
+            }
+            for (const department of state.departments) {
+              $('people-department').append(new Option(humanize(department), department));
+            }
+          }
+        } catch (error) {
+          $('balance').textContent = messageOf(error);
+        }
+      }
+
+      load();
+    </script>
+  </body>
+</html>

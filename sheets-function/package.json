@@ -1,0 +1,25 @@
+{
+  "name": "sheets-function",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CompanyEnrich in Google Sheets: cached custom functions for lookups and a sidebar for bulk, cost-confirmed actions.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.apps-script.json",
+    "smoke": "node --env-file-if-exists=.env --import tsx scripts/smoke.ts",
+    "smoke:sidebar": "node --env-file-if-exists=.env --import tsx scripts/smoke-sidebar.ts",
+    "clasp": "npx --yes @google/clasp@^3.4.1",
+    "push": "npx --yes @google/clasp@^3.4.1 push"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "^2.0.15",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

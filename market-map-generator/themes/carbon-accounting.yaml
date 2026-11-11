@@ -1,0 +1,21 @@
+# Category hints: each company goes to the hint whose name and keywords it matches best
+# (TF-IDF cosine similarity). Companies that match no hint go to "Other".
+# Keywords are matched as words and two-word phrases; numbers are ignored, so write
+# "supplier emissions" rather than "scope 3".
+title: Carbon accounting software
+semantic: carbon accounting, emissions measurement and ESG reporting software for companies
+companies: 24
+filter:
+  foundedYear:
+    min: 2015
+categories:
+  - name: Carbon footprint measurement
+    keywords: [carbon footprint, emissions measurement, greenhouse gas, ghg protocol, emissions factors]
+  - name: Supply chain emissions
+    keywords: [supply chain, supplier, value chain, product carbon footprint, life cycle assessment, procurement]
+  - name: ESG reporting and compliance
+    keywords: [esg reporting, csrd, disclosure, compliance, sustainability reporting, regulatory reporting]
+  - name: Decarbonization and net zero
+    keywords: [decarbonization, net zero, reduction targets, carbon credits, offsets, carbon removal]
+  - name: Energy and buildings
+    keywords: [energy management, energy data, buildings, real estate, utilities]

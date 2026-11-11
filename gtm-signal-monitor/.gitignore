@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+
+# Your real config, run output and state hold your watch lists, company domains and person ids.
+monitor.config.yaml
+output/
+state/state.json
+state/*.tmp

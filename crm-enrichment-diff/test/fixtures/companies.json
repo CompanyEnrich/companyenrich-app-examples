@@ -1,0 +1,209 @@
+[
+  {
+    "id": "019252aa-2a7b-72a8-b610-16492a253674",
+    "name": "Twilio",
+    "legalName": "Twilio, Inc",
+    "domain": "twilio.com",
+    "website": "https://twilio.com",
+    "logoUrl": "https://api.companyenrich.com/companies/logo/019252aa-2a7b-72a8-b610-16492a253674",
+    "description": "Twilio provides cloud communications and customer engagement infrastructure for businesses and developers. Its offerings include APIs and products for SMS, RCS, WhatsApp, voice, email, video, authentication, customer data, contact centers, and conversational AI. The platform supports customer experiences, marketing, sales, support, identity verification, and engagement use cases globally.",
+    "type": "public",
+    "foundedYear": 2008,
+    "employees": "5K-10K",
+    "revenue": "over-1b",
+    "industry": "Telecommunications",
+    "industries": [
+      "Telecommunications",
+      "Software",
+      "Media & Internet/Data Collection & Internet Portals"
+    ],
+    "categories": [
+      "b2b",
+      "service-provider"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      },
+      "state": {
+        "id": 4845,
+        "name": "California",
+        "code": "CA"
+      },
+      "city": {
+        "id": 131186,
+        "name": "San Francisco"
+      },
+      "address": "101 2nd St, San Francisco, CA 94105, United States",
+      "postalCode": "94105-1510",
+      "phone": "+1 415-683-0505"
+    },
+    "socials": {
+      "linkedinUrl": "https://www.linkedin.com/company/twilio-inc-",
+      "linkedinId": "400528",
+      "twitterUrl": "https://x.com/twilio",
+      "facebookUrl": "https://facebook.com/TeamTwilio",
+      "instagramUrl": "https://instagram.com/twilio",
+      "angellistUrl": "http://angel.co/twilio",
+      "crunchbaseUrl": "https://www.crunchbase.com/organization/twilio",
+      "youtubeUrl": "https://youtube.com/@twilio",
+      "g2Url": "https://www.g2.com/products/segment/reviews"
+    },
+    "updatedAt": "2026-10-31T04:17:23.230702Z"
+  },
+  {
+    "id": "019257ed-d55b-75a0-8a3f-c739ff523db4",
+    "name": "Atlassian",
+    "legalName": "Atlassian Corporation",
+    "domain": "atlassian.com",
+    "website": "https://atlassian.com",
+    "logoUrl": "https://api.companyenrich.com/companies/logo/019257ed-d55b-75a0-8a3f-c739ff523db4",
+    "description": "Atlassian develops collaboration software for software, IT, and business teams. Its products include Jira, Confluence, Trello, Bitbucket, Loom, Jira Service Management, and Rovo, supporting project management, knowledge sharing, software development, service management, and strategic planning. The company serves organizations worldwide, including more than 300,000 companies.",
+    "type": "public",
+    "foundedYear": 2002,
+    "employees": "over-10K",
+    "revenue": "over-1b",
+    "industry": "Software",
+    "industries": [
+      "Software",
+      "Media & Internet/Data Collection & Internet Portals",
+      "Business Services/Custom Software & IT Services"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      },
+      "state": {
+        "id": 4845,
+        "name": "California",
+        "code": "CA"
+      },
+      "city": {
+        "id": 131186,
+        "name": "San Francisco"
+      },
+      "address": "350 Bush Street, Floor 13",
+      "postalCode": "2000",
+      "phone": "+1-415-701-1110"
+    },
+    "socials": {
+      "linkedinUrl": "https://www.linkedin.com/company/atlassian",
+      "linkedinId": "22688",
+      "twitterUrl": "https://x.com/Atlassian",
+      "facebookUrl": "https://www.facebook.com/Atlassian",
+      "instagramUrl": "https://www.instagram.com/atlassian/",
+      "angellistUrl": "http://angel.co/atlassian",
+      "crunchbaseUrl": "https://www.crunchbase.com/organization/atlassian",
+      "youtubeUrl": "https://www.youtube.com/user/GoAtlassian",
+      "g2Url": "https://www.g2.com/products/trello/reviews"
+    },
+    "updatedAt": "2026-10-30T13:56:44.956672Z"
+  },
+  {
+    "id": "01925351-59e7-705c-a6bf-f947d5e60bcd",
+    "name": "Zoom",
+    "domain": "zoom.us",
+    "website": "https://zoom.us",
+    "logoUrl": "https://api.companyenrich.com/companies/logo/01925351-59e7-705c-a6bf-f947d5e60bcd",
+    "description": "Zoom is a company that specializes in video conferencing and collaboration tools, including video meetings, team chat, VoIP phone, webinars, whiteboard, contact center, and events.",
+    "type": "public",
+    "foundedYear": 2013,
+    "employees": "5K-10K",
+    "revenue": "over-1b",
+    "industry": "Software",
+    "industries": [
+      "Software",
+      "Media & Internet/Data Collection & Internet Portals",
+      "Business Services/Custom Software & IT Services"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "US",
+        "name": "United States"
+      },
+      "state": {
+        "id": 4845,
+        "name": "California",
+        "code": "CA"
+      },
+      "city": {
+        "id": 131192,
+        "name": "San Jose"
+      },
+      "address": "55 Almaden Boulevard, San Jose, CA 95113, US",
+      "postalCode": "95113",
+      "phone": "+1 888-799-9666"
+    },
+    "socials": {
+      "linkedinId": "2171524",
+      "twitterUrl": "https://twitter.com/zoom",
+      "facebookUrl": "https://www.facebook.com/zoom",
+      "instagramUrl": "https://www.instagram.com/zoom",
+      "angellistUrl": "http://angel.co/zoom-us",
+      "youtubeUrl": "https://www.youtube.com/zoommeetings"
+    },
+    "updatedAt": "2026-11-02T12:00:26.122798Z"
+  },
+  {
+    "id": "019258d3-448a-7cc2-92d6-1a53a328fd7e",
+    "name": "Shopify",
+    "legalName": "Shopify Inc",
+    "domain": "shopify.com",
+    "website": "https://shopify.com",
+    "logoUrl": "https://api.companyenrich.com/companies/logo/019258d3-448a-7cc2-92d6-1a53a328fd7e",
+    "description": "Shopify provides an all-in-one commerce platform for entrepreneurs, small businesses, and enterprise brands. Its tools support online and in-person selling, storefront creation, checkout, payments, inventory, shipping, marketing, analytics, and business financing. Shopify serves merchants and shoppers globally through online stores, marketplaces, social channels, point-of-sale systems, and international commerce features.",
+    "type": "public",
+    "foundedYear": 2006,
+    "employees": "over-10K",
+    "revenue": "over-1b",
+    "industry": "Software",
+    "industries": [
+      "Software"
+    ],
+    "categories": [
+      "b2b",
+      "saas"
+    ],
+    "location": {
+      "country": {
+        "code": "CA",
+        "name": "Canada"
+      },
+      "state": {
+        "id": 661,
+        "name": "Ontario",
+        "code": "ON"
+      },
+      "city": {
+        "id": 17306,
+        "name": "Ottawa"
+      },
+      "address": "151 O'Connor Street, Suite 600, Ottawa, Ontario, Canada",
+      "postalCode": "K2P 2L8",
+      "phone": "+1-888-746-7439"
+    },
+    "socials": {
+      "linkedinUrl": "https://www.linkedin.com/company/shopify",
+      "linkedinId": "784652",
+      "twitterUrl": "https://x.com/Shopify",
+      "facebookUrl": "https://facebook.com/shopify",
+      "instagramUrl": "https://instagram.com/shopify",
+      "angellistUrl": "http://angel.co/the-gadget-flow",
+      "crunchbaseUrl": "https://www.crunchbase.com/organization/shopify",
+      "youtubeUrl": "https://youtube.com/user/shopify",
+      "githubUrl": "https://github.com/Shopify",
+      "g2Url": "https://www.g2.com/products/quiztoaction/reviews"
+    },
+    "updatedAt": "2026-11-10T09:53:08.436012Z"
+  }
+]

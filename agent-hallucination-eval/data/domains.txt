@@ -1,0 +1,26 @@
+# Well-known companies across sizes, countries and industries.
+# One domain per line. Each company found costs 2 credits (enrichment + financial expansion).
+
+# Large, public or late-stage
+stripe.com
+shopify.com
+spotify.com
+siemens.com
+infosys.com
+mercadolibre.com
+volvocars.com
+maersk.com
+
+# Growth stage
+safetyculture.com
+revolut.com
+vtex.com
+grab.com
+n26.com
+celonis.com
+mistral.ai
+
+# Small
+posthog.com
+plausible.io
+basecamp.com

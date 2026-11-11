@@ -1,0 +1,26 @@
+{
+  "name": "gtm-signal-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scheduled job that watches CompanyEnrich data for go-to-market signals and posts a digest to Slack or Markdown.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

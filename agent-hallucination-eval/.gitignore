@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+output/
+
+# Generated eval sets, run results and reports. data/sample.jsonl stays committed.
+data/eval-*.jsonl
+runs/
+report.md

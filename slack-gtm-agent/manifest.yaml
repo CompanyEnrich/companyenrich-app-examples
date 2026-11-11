@@ -1,0 +1,34 @@
+# Slack app manifest. Create the app at https://api.slack.com/apps -> Create New App ->
+# From a manifest, paste this file, and replace https://YOUR-HOST with your public URL.
+display_information:
+  name: CompanyEnrich GTM
+  description: Answers go-to-market questions with CompanyEnrich data, with a credit approval step.
+  background_color: "#1f2937"
+features:
+  bot_user:
+    display_name: companyenrich
+    always_online: false
+  slash_commands:
+    - command: /ce
+      url: https://YOUR-HOST/slack/events
+      description: CompanyEnrich lookups with credit approval
+      usage_hint: "company stripe.com | count fintech startups in Berlin | people stripe.com vp sales | lookalikes stripe.com 5 | balance | help"
+      should_escape: false
+oauth_config:
+  scopes:
+    bot:
+      - app_mentions:read
+      - chat:write
+      - commands
+      - files:write
+settings:
+  event_subscriptions:
+    request_url: https://YOUR-HOST/slack/events
+    bot_events:
+      - app_mention
+  interactivity:
+    is_enabled: true
+    request_url: https://YOUR-HOST/slack/events
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false

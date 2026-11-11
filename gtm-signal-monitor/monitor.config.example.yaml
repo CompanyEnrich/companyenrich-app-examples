@@ -1,0 +1,56 @@
+# GTM signal monitor config. Copy to monitor.config.yaml and edit.
+# Check any change for free with `npm start -- --dry-run`: it runs the counts and prints the credit plan.
+#
+# Each watcher has a unique `id` (it keys the saved state) and an optional `title` for the digest.
+
+watchers:
+  # 1. Companies that newly match a company search.
+  #    Each run: free count excluding domains already reported; if anything is new,
+  #    one paid search for up to maxResultsPerRun companies.
+  - id: funded-saas
+    type: new-companies
+    title: US B2B SaaS that raised money this year
+    maxResultsPerRun: 5
+    # Paid expansions, +1 credit per company each. `financial` adds the funding stage, date and total.
+    expand: [financial]
+    query:
+      # Any v2 company search filter: https://docs.companyenrich.com
+      filter:
+        country: US
+        categories: [b2b, saas]
+        employees: [11-50, 51-200]
+        fundingYear: { min: 2026 } # latest funding round in 2026 or later
+        fundingAmount: { min: 10000000 }
+      # Alternative: engineering teams that grew 20%+ in six months, found by description.
+      # A semantic query costs 2 credits per result instead of 1.
+      # semantic:
+      #   query: developer tools for data teams
+      # filter:
+      #   country: US
+      #   workforceGrowth: { period: m6, department: engineering_technical, min: 0.2 }
+
+  # 2. Senior people who recently started their current position at accounts you watch.
+  #    Each run: one free count per month in the window; a paid search only for months with new people.
+  - id: target-account-leaders
+    type: new-leaders
+    title: New leaders at target accounts
+    domains: [stripe.com, notion.so, figma.com, datadoghq.com, hubspot.com, snowflake.com]
+    seniority: [c-suite, vp, head, director]
+    # Optional. A department includes its sub-departments, e.g. engineering-technical/data-science.
+    department: [sales, marketing, product-management, engineering-technical]
+    # The first run looks back this far. Later runs look back this far from the previous run,
+    # because people often update their profiles weeks after a move. Duplicates are filtered out.
+    lookbackDays: 30
+    maxResultsPerRun: 10
+
+  # 3. Changes at accounts you watch: size, revenue, industry, HQ, funding, tech stack, headcount.
+  #    Costs 1 credit per account plus 1 per expansion, at most once every refreshEveryDays.
+  #    The first run records a baseline; changes show up from the next refresh.
+  - id: target-account-changes
+    type: account-changes
+    title: Changes at target accounts
+    domains: [stripe.com, notion.so, figma.com, linear.app, vercel.com]
+    expand: [financial, technologies, workforce]
+    refreshEveryDays: 7
+    # Report observed headcount moves of at least this many percent (departments also need 3+ people).
+    headcountChangePct: 10

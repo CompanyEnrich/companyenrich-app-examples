@@ -1,0 +1,10 @@
+# Example champions list with placeholder data only: every address is at example.com.
+# Put your real list in champions.csv at the root of this app. That file is gitignored, so it is never committed.
+#
+# Columns: email or person_id (a CompanyEnrich person id), account_domain, deal_name, owner.
+# Fill in one of email or person_id per row; person_id is cheaper (2 credits instead of 5).
+# owner can be a name, an email or a Slack member id (U...), which gets @-mentioned in Slack.
+email,person_id,account_domain,deal_name,owner
+jane.doe@example.com,,example.com,Example Co platform rollout 2025,alex@example.com
+sam.lee@example.com,,example.com,Example Co EMEA expansion,alex@example.com
+priya.shah@example.com,,example.com,Example Co renewal 2026,morgan@example.com

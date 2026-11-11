@@ -1,0 +1,24 @@
+{
+  "name": "competitor-displacement",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Find companies that run a competitor's technology and not yours, size the market for free, rank accounts by why-now signals and find the buyer, with the CompanyEnrich API.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@companyenrich/sdk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
